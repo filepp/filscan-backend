@@ -25,9 +25,9 @@ Filscan is a blockchain browser for Filecoin, which can be used to view Filecoin
 
 ### Environment
 
-- golang >= v1.13
+- golang >= v1.55
 - mongo >= v4.2
-- lotus >= v0.2.7
+- lotus >= v1.3.0
 
 ### System Require
 
