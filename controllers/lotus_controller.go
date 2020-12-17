@@ -753,10 +753,11 @@ func GetLotusHead() (tipset *types.TipSet, err error) {
 	return
 }
 
+
+//  TODO WEN
 func GetPledgeCollateral(tipset *types.TipSet) (string, error) {
-	bigInt, err := LotusApi.StatePledgeCollateral(context.TODO(), tipset.Key())
-	if err != nil {
-		return "", err
-	}
-	return types.FIL(bigInt).String(), err
+	//bigInt, err := LotusApi.StateMinerInitialPledgeCollateral(context.TODO(), miner.SectorPreCommitInfo, tipset.Key())
+
+
+	return  "0", nil
 }

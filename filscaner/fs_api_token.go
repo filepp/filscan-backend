@@ -12,8 +12,8 @@ import (
 	"github.com/ipfs-force-community/common"
 	"math/big"
 	"time"
-	"github.com/filecoin-project/specs-actors/actors/abi"
-	big2 "github.com/filecoin-project/specs-actors/actors/abi/big"
+	"github.com/filecoin-project/go-state-types/abi"
+	big2 "github.com/filecoin-project/go-state-types/big"
 )
 
 var resp_success = &common.Result{Code: 3, Msg: "success"}

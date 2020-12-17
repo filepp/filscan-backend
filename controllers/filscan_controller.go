@@ -228,7 +228,7 @@ func (this *FilscanServer) BaseInformation(ctx context.Context, input *common.Em
 		allMsg := flscaner.List().MesageAll()
 		var cashTotalPrice, cashTotalSize uint64
 		for _, value := range allMsg {
-			cashTotalPrice += value.Message.GasPrice.Uint64()
+			cashTotalPrice += uint64(value.Message.GasLimit)
 			cashTotalSize += uint64(value.Size)
 		}
 		if msgCount+len(allMsg) > 0 {

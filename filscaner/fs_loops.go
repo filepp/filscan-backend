@@ -5,7 +5,7 @@ import (
 	"github.com/filecoin-project/lotus/api"
 	"math/big"
 	"time"
-	"github.com/filecoin-project/specs-actors/actors/abi"
+	"github.com/filecoin-project/go-state-types/abi"
 	"github.com/filecoin-project/lotus/chain/types"
 	"github.com/filecoin-project/lotus/chain/store"
 )

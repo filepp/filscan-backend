@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"github.com/filecoin-project/lotus/api"
 	"github.com/filecoin-project/lotus/chain/types"
-	"github.com/filecoin-project/specs-actors/actors/crypto"
+	"github.com/filecoin-project/go-state-types/crypto"
 	"github.com/globalsign/mgo"
 	"gopkg.in/mgo.v2/bson"
 	"strconv"

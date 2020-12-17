@@ -181,14 +181,14 @@ func ArgInit() {
 
 func LotusInit() {
 	lotusGetWay := conf("lotusGetWay")
-	cli, stopper, err := client.NewFullNodeRPC("ws://"+lotusGetWay+"/rpc/v0", nil)
+	cli, stopper, err := client.NewFullNodeRPC(context.TODO(),"ws://"+lotusGetWay+"/rpc/v0", nil)
 	if err != nil {
 		defer stopper()
 		log2.Fatalln(ps("get lotus connect err, ,err=[%v]", err))
 	} else {
 		LotusApi = cli
 	}
-	commonclient, commonstopper, err := client.NewCommonRPC("ws://"+lotusGetWay+"/rpc/v0", nil)
+	commonclient, commonstopper, err := client.NewCommonRPC(context.TODO(),"ws://"+lotusGetWay+"/rpc/v0", nil)
 	if err != nil {
 		defer commonstopper()
 		log2.Fatalln(ps("get lotus commonclient connect err, ,err=[%v]", err))

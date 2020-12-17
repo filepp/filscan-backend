@@ -12,16 +12,18 @@ import (
 	"math/big"
 
 	"filscan_lotus/models"
-	po "github.com/filecoin-project/specs-actors/actors/builtin/power"
+	po "github.com/filecoin-project/lotus/chain/actors/builtin/power"
 	"github.com/filecoin-project/specs-actors/actors/builtin"
-	"github.com/filecoin-project/specs-actors/actors/abi"
+	"github.com/filecoin-project/go-state-types/abi"
+	"github.com/filecoin-project/lotus/chain/actors/builtin/miner"
+	//	"github.com/filecoin-project/go-bitfield"
 )
 
 func (fs *Filscaner) api_miner_state_at_tipset(miner_addr address.Address, tipset *types.TipSet) (*models.MinerStateAtTipset, error) {
 	var (
 		power               *api.MinerPower
-		sectors             []*api.ChainSectorInfo
-		miner_info	    api.MinerInfo
+		sectors             []*miner.SectorOnChainInfo
+		miner_info	    miner.MinerInfo
 		proving_sector_size = models.NewBigintFromInt64(0)
 		err                 error
 	)
@@ -44,7 +46,7 @@ func (fs *Filscaner) api_miner_state_at_tipset(miner_addr address.Address, tipse
 		}
 	}
 
-	if sectors, err = fs.api.StateMinerSectors(fs.ctx, miner_addr, nil, false, tipset.Key()); err != nil {
+	if sectors, err = fs.api.StateMinerSectors(fs.ctx, miner_addr, nil, tipset.Key()); err != nil {
 		fs.Printf("get miner sector failed, message:%s\n", err.Error())
 		return nil, err
 	}
