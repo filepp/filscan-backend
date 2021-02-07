@@ -2,6 +2,7 @@ package models
 
 import (
 	"encoding/json"
+	"github.com/filecoin-project/go-state-types/crypto"
 	"github.com/filecoin-project/lotus/chain/types"
 	"github.com/globalsign/mgo"
 	"github.com/ipfs/go-cid"
@@ -45,7 +46,7 @@ type BlockHeader struct {
 
 	Ticket BlockHeaderTicket `bson:"Ticket" json:"Ticket"`
 
-	ElectionProof string `bson:"ElectionProof" json:"ElectionProof"`
+	ElectionProof types.ElectionProof `bson:"ElectionProof" json:"ElectionProof"`
 
 	Parents []FilscanCid `bson:"Parents" json:"Parents"`
 
@@ -59,11 +60,11 @@ type BlockHeader struct {
 
 	Messages FilscanCid `bson:"Messages" json:"Messages"`
 
-	BLSAggregate BlockHeaderSignature `bson:"BLSAggregate" json:"BLSAggregate"`
+	BLSAggregate crypto.Signature `bson:"BLSAggregate" json:"BLSAggregate"`
 
 	Timestamp uint64 `bson:"Timestamp" json:"Timestamp"`
 
-	BlockSig BlockHeaderSignature `bson:"BlockSig" json:"BlockSig"`
+	BlockSig crypto.Signature `bson:"BlockSig" json:"BlockSig"`
 }
 
 type FilscanCid struct {

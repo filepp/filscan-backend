@@ -3,9 +3,9 @@ package models
 import (
 	"encoding/json"
 	"fmt"
+	"github.com/filecoin-project/go-state-types/crypto"
 	"github.com/filecoin-project/lotus/api"
 	"github.com/filecoin-project/lotus/chain/types"
-	"github.com/filecoin-project/go-state-types/crypto"
 	"github.com/globalsign/mgo"
 	"gopkg.in/mgo.v2/bson"
 	"strconv"
@@ -17,20 +17,20 @@ const (
 )
 
 type FilscanMsg struct {
-	Message       types.Message   `bson:"message" json:"message"`
-	Cid           string          `bson:"cid" json:"cid"`
-	BlockCid      string          `bson:"block_cid" json:"block_cid"` //暂时停用 zfl
-	ActorName     string          `bson:"actor_name" json:"actor_name"`
-	MethodName    string          `bson:"method_name" json:"method_name"`
-	ExitCode      string          `bson:"exit_code" json:"exit_code"` //默认值 不应为 0
-	Return        string          `bson:"return" json:"return"`
-	GasUsed       string          `bson:"gas_used" json:"gas_used"`
-	RequiredFunds types.BigInt    `bson:"required_funds" json:"required_funds"`
-	Size          int64           `bson:"size" json:"size"`
-	Height        uint64          `bson:"height" json:"height"`
-	MsgCreate     uint64          `bson:"msg_create" json:"msg_create"`
-	GmtCreate     int64           `bson:"gmt_create" json:"gmt_create"`
-	GmtModified   int64           `bson:"gmt_modified" json:"gmt_modified"`
+	Message       types.Message    `bson:"message" json:"message"`
+	Cid           string           `bson:"cid" json:"cid"`
+	BlockCid      string           `bson:"block_cid" json:"block_cid"` //暂时停用 zfl
+	ActorName     string           `bson:"actor_name" json:"actor_name"`
+	MethodName    string           `bson:"method_name" json:"method_name"`
+	ExitCode      string           `bson:"exit_code" json:"exit_code"` //默认值 不应为 0
+	Return        string           `bson:"return" json:"return"`
+	GasUsed       string           `bson:"gas_used" json:"gas_used"`
+	RequiredFunds types.BigInt     `bson:"required_funds" json:"required_funds"`
+	Size          int64            `bson:"size" json:"size"`
+	Height        uint64           `bson:"height" json:"height"`
+	MsgCreate     uint64           `bson:"msg_create" json:"msg_create"`
+	GmtCreate     int64            `bson:"gmt_create" json:"gmt_create"`
+	GmtModified   int64            `bson:"gmt_modified" json:"gmt_modified"`
 	Signature     crypto.Signature `bson:"signature" json:"signature"`
 }
 
@@ -48,7 +48,7 @@ type FilscanMsgResult struct {
 	MsgCreate     uint64               `bson:"msg_create" json:"msg_create"`
 	GmtCreate     int64                `bson:"gmt_create" json:"gmt_create"`
 	GmtModified   int64                `bson:"gmt_modified" json:"gmt_modified"`
-	Signature     MsgSignature         `bson:"signature" json:"signature"`
+	Signature     crypto.Signature     `bson:"signature" json:"signature"`
 }
 
 type MsgSignature struct {
@@ -62,7 +62,7 @@ type FilscanResMsgMessage struct {
 	Nonce    uint64 `bson:"Nonce" json:"Nonce"`
 	Value    string `bson:"Value" json:"Value"`
 	GasPrice string `bson:"GasPrice" json:"GasPrice"`
-	GasLimit string `bson:"GasLimit" json:"GasLimit"`
+	GasLimit int64  `bson:"GasLimit" json:"GasLimit"`
 	Method   int    `bson:"Method" json:"Method"`
 	Params   string `bson:"Params" json:"Params"`
 }

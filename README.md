@@ -39,9 +39,9 @@ git clone (githuburl)
 
 cd Backend
 
-make build-lotus
+make build-deps
 
-go build
+make build
 ```
 ### Configuration
 

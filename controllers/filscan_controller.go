@@ -6,6 +6,7 @@ import (
 	"errors"
 	filscanproto "filscan_lotus/filscanproto"
 	"filscan_lotus/models"
+	"fmt"
 	"strconv"
 	"time"
 
@@ -596,7 +597,7 @@ func FilscanBlockResult2PtotoFilscanBlock(f models.FilscanBlockResult) *filscanp
 	//tickets =
 
 	b.Tickets = f.BlockHeader.Ticket.VRFProof
-	b.ElectionProof = f.BlockHeader.ElectionProof
+	//b.ElectionProof = f.BlockHeader.ElectionProof
 	for _, value := range f.BlockHeader.Parents {
 		parents = append(parents, value.Str)
 	}
@@ -606,9 +607,11 @@ func FilscanBlockResult2PtotoFilscanBlock(f models.FilscanBlockResult) *filscanp
 	b.ParentStateRoot = f.BlockHeader.ParentMessageReceipts.Str
 	b.ParentMessageReceipts = f.BlockHeader.ParentMessageReceipts.Str
 	b.Messages = f.BlockHeader.Messages.Str
-	b.BlsAggregate = &filscanproto.Signature{Type: f.BlockHeader.BLSAggregate.Type, Data: f.BlockHeader.BLSAggregate.Data}
+	tp, _ := f.BlockHeader.BLSAggregate.Type.Name()
+	b.BlsAggregate = &filscanproto.Signature{Type: tp, Data: string(f.BlockHeader.BLSAggregate.Data)}
 	b.Timestamp = int64(f.BlockHeader.Timestamp)
-	b.BlockSig = &filscanproto.Signature{Type: f.BlockHeader.BlockSig.Data, Data: f.BlockHeader.BlockSig.Type}
+	tp, _ = f.BlockHeader.BlockSig.Type.Name()
+	b.BlockSig = &filscanproto.Signature{Type: tp, Data: string(f.BlockHeader.BlockSig.Data)}
 	res.BlockHeader = b
 	res.Cid = f.Cid
 	//res.Weight = f.
@@ -659,7 +662,7 @@ func FilscanResMsg2PtotoFilscanMessage(m models.FilscanMsgResult) *filscanproto.
 	}
 
 	msg.Gasprice = m.Message.GasPrice
-	msg.Gaslimit = m.Message.GasLimit
+	msg.Gaslimit = fmt.Sprintf("%d", m.Message.GasLimit)
 	msg.Method = strconv.Itoa(m.Message.Method)
 	msg.Params = m.Message.Params
 
