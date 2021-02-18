@@ -156,7 +156,7 @@ func AccountResult2ProtoAccount(account *models.AccountResult) *filscanproto.Fil
 	actor.Head = account.Actor.Head.Str
 
 	balanceBigInt, _ := types.BigFromString(account.Actor.Balance)
-	actor.Balance = types.FIL(balanceBigInt).String()
+	actor.Balance = types.FIL(balanceBigInt).Unitless()
 	actor.Nonce = account.Actor.Nonce
 	res.Actor = actor
 	res.Address = account.Address
